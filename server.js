@@ -30,7 +30,7 @@ let use = server.use((req, res, next)=> {
 
 server.use(express.static(__dirname + '/public'));
 
-server.get('/home',(req,res) => {
+server.get('/',(req,res) => {
 	res.render('home.hbs',{
 		headTitle:'Home Page',
 		welcomeMessage:'Welcome to my home page!',

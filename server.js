@@ -6,6 +6,7 @@ const port = process.env.PORT || 8080;
 
 let server = express();
 
+//middleware to register partials.....
 hbs.registerPartials(__dirname + '/views/partials');
 hbs.registerHelper('getCurrentYear',()=>{
     return new Date().getFullYear();
@@ -16,7 +17,7 @@ hbs.registerHelper('screamIt',(text)=>{
 
 server.set('view engine','hbs');
 
-
+//middleware to write log...
 let use = server.use((req, res, next)=> {
     let now = new Date().toString();
     console.log(`${now} ${req.method} ${req.url}`);
@@ -39,9 +40,16 @@ server.get('/',(req,res) => {
 
 server.get('/about',(req,res)=>{
 	res.render('about.hbs',{
-		headTitle: 'About Help',
+		headTitle: 'About Page',
 		paraDetail: 'This is a sample paragraph',
 	});
+})
+
+server.get('/project',(req,res)=>{
+    res.render('project.hbs',{
+        headTitle: 'Portfolio Page',
+        portfolioMessage: 'This is the project portfolio page',
+    });
 })
 
 server.get('/bad',(req,res)=>{
